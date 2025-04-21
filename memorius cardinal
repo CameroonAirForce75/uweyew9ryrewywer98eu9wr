@@ -1,0 +1,117 @@
+from PyQt5.QtCore import Qt
+from random import *
+from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QLabel, QVBoxLayout, QHBoxLayout, QMessageBox, QRadioButton, QGroupBox
+
+app = QApplication([])
+main_win = QWidget()
+main_win.resize(500, 300)
+main_win.setWindowTitle('Memorius Cardinal')
+
+def win():
+    RadioGroupBox.hide()
+    RadioGroupBox1.show()
+
+def defeat():
+    text3.setText('неа')
+    win()
+
+
+class Question():
+    def __init__(self, question: str, right_answer: str, wrong1: str, wrong2: str, wrong3: str):
+        self.question = question
+        self.right_answer = right_answer
+        self.wrong1 = wrong1
+        self.wrong2 = wrong2
+        self.wrong3 = wrong3
+
+    def ask(Question):
+
+        answers[0].setText(q.right_answer)
+        answers[1].setText(q.wrong1)
+        answers[2].setText(q.wrong2)
+        answers[3].setText(q.wrong3)
+
+        lb_question.setText(q.question)  
+        lb_correct.setText(q.right_answer)  
+
+        shuffle(answers)
+
+        show_question()  
+
+questions_list = [
+    Question(
+        "Государственный язык Бразилии",
+        "Португальский",
+        "Английский",
+        "Испанский",
+        "Бразильский",
+    ),
+    Question(
+        "Какого цвета нет на флаге России?",
+        "Зелёный",
+        "Красный",
+        "Белый",
+        "Синий",
+    ),
+]
+
+button = QPushButton('отвечай давай кусок хлебушка')
+RadioGroupBox = QGroupBox("варианты хлебушка")
+RadioGroupBox1 = QGroupBox('результат твоего страдания')
+text = QLabel('мега супер дупер ультра хлебный вопрос!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+
+RadioGroupBo = QVBoxLayout()
+
+text2 = QLabel('🦈🦈🦈🦈🎰🎰🎰🗿🗿🎸 или неа')
+text3 = QLabel('🦈🦈🦈🦈🎰🎰🎰🗿🗿🎸')
+
+RadioGroupBo.addWidget(text2, alignment = Qt.AlignCenter)
+RadioGroupBo.addWidget(text3, alignment = Qt.AlignCenter)
+
+RadioGroupBox1.setLayout(RadioGroupBo)
+
+main_win_text = QLabel('кто такой гордон фримен') 
+ans1_1 = QRadioButton('пацан с ломиком') 
+ans1_2 = QRadioButton('кот') 
+ans1_3 = QRadioButton('доктар мозман')
+ans1_4 = QRadioButton('физик-теоретик') 
+
+layout_main_box = QVBoxLayout()
+lth1_box = QHBoxLayout()
+lth2_box = QHBoxLayout()
+
+lth1_box.addWidget(ans1_1, alignment = Qt.AlignCenter)
+lth1_box.addWidget(ans1_2, alignment = Qt.AlignCenter)
+lth2_box.addWidget(ans1_3, alignment = Qt.AlignCenter)
+lth2_box.addWidget(ans1_4, alignment = Qt.AlignCenter)
+
+layout_main_box.addLayout(lth1_box)
+layout_main_box.addLayout(lth2_box)
+
+RadioGroupBox.setLayout(layout_main_box)
+
+layout = QVBoxLayout()
+layout.addWidget(main_win_text)
+layout.addWidget(RadioGroupBox)
+layout.addWidget(RadioGroupBox1)
+layout.addWidget(button, alignment = Qt.AlignCenter)
+RadioGroupBox1.hide()
+
+layout.addWidget(button)
+main_win.setLayout(layout)
+
+# layout_main.addStretch(1)
+# layout_main.addWidget(button1, stretch=3)
+# layout_main.addStretch(1)
+
+#layout_main.addWidget(RadioGroupBox, alignment=(Qt.AlignHCenter | Qt.AlignVCenter))
+
+# layout_main.setSpacing(29)
+
+ans1_4.clicked.connect(win)
+ans1_1.clicked.connect(defeat)
+ans1_2.clicked.connect(defeat)
+ans1_3.clicked.connect(defeat)
+
+main_win.show()
+app.exec()
